@@ -1,0 +1,5 @@
+#libraries that are required for the projectpython -c "import pandas, sqlalchemy, pytest; print('Pandas:', pandas.__version__); print('SQLAlchemy:', sqlalchemy.__version__); print('pytest:', pytest.__version__)"
+
+pandas==2.2.3
+SQLAlchemy==2.0.36
+pytest==8.3.4

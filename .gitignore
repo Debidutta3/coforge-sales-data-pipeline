@@ -8,3 +8,5 @@ logs/*
 .pytest_cache/
 .idea/
 .vscode/
+data/processed_sales.csv
+data/rejected_sales.csv

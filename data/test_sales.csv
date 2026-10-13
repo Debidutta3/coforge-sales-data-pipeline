@@ -1,0 +1,9 @@
+
+order_id,order_date,product,quantity,unit_price,customer_id
+2001,2026-10-06,Laptop,2,500.00,601
+2002,2026-10-06,Mouse,0,500.00,602
+2003,2026-10-07,Keyboard,3,-100.00,603
+2004,2026-10-07,Monitor,abc,1200.00,604
+2001,2026-10-08,Webcam,4,250.00,605
+2005,invalid-date,Desk,1,850.00,606
+2006,2026-10-08,Chair,2,600.00,607
