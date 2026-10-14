@@ -10,3 +10,5 @@ logs/*
 .vscode/
 data/processed_sales.csv
 data/rejected_sales.csv
+data/spark_processed_sales.csv
+data/spark_processed_sales/
