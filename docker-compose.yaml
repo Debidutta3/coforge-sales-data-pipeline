@@ -1,0 +1,22 @@
+x-airflow-common: &airflow-common
+  image: apache/airflow:3.1.0
+  environment: &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./config:/opt/airflow/config
+    - ./plugins:/opt/airflow/plugins
+    - ./src:/opt/airflow/src
+    - ./data:/opt/airflow/data
+  user: "50000:0"
+
+services:
+  airflow:
+    <<: *airflow-common
+    command: standalone
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
