@@ -46,3 +46,32 @@ def test_rejected_records_include_reasons():
     assert "rejection_reason" in rejected.columns
     assert rejected["rejection_reason"].notna().all()
     assert rejected["rejection_reason"].str.len().gt(0).all()
+    
+    
+
+def test_ingestion_rejects_missing_file():
+    file_path = Path("data/does_not_exist.csv")
+
+    try:
+        ingest_sales_data(file_path)
+        assert False, "Expected FileNotFoundError was not raised"
+    except FileNotFoundError as error:
+        assert "Sales file not found" in str(error)
+
+
+def test_ingestion_rejects_missing_required_columns(tmp_path):
+    file_path = tmp_path / "incomplete_sales.csv"
+
+    # This CSV intentionally omits customer_id and unit_price.
+    pd.DataFrame({
+        "order_id": [3001],
+        "order_date": ["2026-10-10"],
+        "product": ["Laptop"],
+        "quantity": [1],
+    }).to_csv(file_path, index=False)
+
+    try:
+        ingest_sales_data(file_path)
+        assert False, "Expected ValueError was not raised"
+    except ValueError as error:
+        assert "Missing required columns" in str(error)
